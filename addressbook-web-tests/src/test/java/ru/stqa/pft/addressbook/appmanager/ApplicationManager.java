@@ -18,12 +18,13 @@ public class ApplicationManager {
   public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
   }
-  
+
   public void stop() {
     wd.quit();
   }
@@ -37,13 +38,11 @@ public class ApplicationManager {
     }
   }
 
-  private boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 
+  public GroupHelper getGroupHelper() {
+    return groupHelper;
+  }
 }

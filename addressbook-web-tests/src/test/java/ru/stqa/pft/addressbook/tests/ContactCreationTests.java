@@ -33,7 +33,6 @@ public class ContactCreationTests {
     initNewContactCreation();
     fillContactForm(new ContactData("Santa", "Saint", "Claus", "Red", "Christmas corp.", "2512 Everywhere Avenue", "+55512349876", "1", "January", "1900", "Ho Ho Ho!!!"));
     submitNewContactCreation();
-    //wd.findElement(By.linkText("Logout")).click();
   }
 
   private void submitNewContactCreation() {
