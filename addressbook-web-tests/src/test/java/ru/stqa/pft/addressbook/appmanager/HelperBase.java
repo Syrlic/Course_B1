@@ -30,7 +30,7 @@ public class HelperBase {
     }
   }
 
-  protected void selectByText(By locator, String text) {
+  protected void select(By locator, String text) {
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 }
