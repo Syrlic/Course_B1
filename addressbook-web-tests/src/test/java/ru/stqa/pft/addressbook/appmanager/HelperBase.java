@@ -35,7 +35,9 @@ public class HelperBase {
   }
 
   public void alertAccept() {
-    if(isAlertPresent())
-    wd.switchTo().alert().accept();
+    if(isAlertPresent()) {
+      wd.switchTo().alert().accept();
+      wd.findElement(By.cssSelector("div.msgbox"));
+    }
   }
 }

@@ -20,4 +20,5 @@ public class NavigationHelper extends HelperBase{
   public void assertConfirmation() {
     alertAccept();
   }
+
 }
