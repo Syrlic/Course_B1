@@ -17,8 +17,13 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    if(text != null) {
+      String existingText = wd.findElement(locator).getAttribute("value"); // получить текст из поля ввода (исключение)
+      if (!text.equals(existingText)) {
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+      }
+    }
   }
 
   public boolean isAlertPresent() {
