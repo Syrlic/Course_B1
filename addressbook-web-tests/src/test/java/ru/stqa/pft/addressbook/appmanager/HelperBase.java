@@ -45,6 +45,7 @@ public class HelperBase {
       wd.switchTo().alert().accept();
       wd.findElement(By.cssSelector("div.msgbox"));
     }
+
   }
 
   protected boolean isElementPresent(By locator) {
