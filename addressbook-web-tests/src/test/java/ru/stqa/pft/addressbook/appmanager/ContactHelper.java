@@ -76,32 +76,12 @@ public class ContactHelper extends HelperBase{
     if(!element.isEmpty()) {
       for (WebElement we : element) {
         List<WebElement> cells = we.findElements(By.tagName("td"));
-        ContactData contact = new ContactData(0, null, null, null, null,
-                null, null, null, null,
+        ContactData contact = new ContactData(Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value")),
+                cells.get(2).getText(), null, cells.get(1).getText(), null,
+                null, cells.get(3).getText(), cells.get(5).getText(), null,
                 null, null, null, null);
-        for (int i = 0; i < cells.size(); i++) {
-          switch (i) {
-            case 0:
-              contact.setId(Integer.parseInt(cells.get(i).findElement(By.tagName("input"))
-                      .getAttribute("value")));
-              break;
-            case 1:
-              contact.setLastname(cells.get(i).getText());
-              break;
-            case 2:
-              contact.setFirstname(cells.get(i).getText());
-              break;
-            case 3:
-              contact.setAddress(cells.get(i).getText());
-              break;
-            case 5:
-              contact.setMobile(cells.get(i).getText());
-              break;
-          }
-        }
         contacts.add(contact);
       }
-
-  }
+    }
     return contacts;
 }}
