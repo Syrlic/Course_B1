@@ -9,7 +9,7 @@ public class ContactDeletionTests extends TestBase {
 
   @Test
    public void testContactDeletion() {
-    app.getNavigationHelper().goToHome();
+    app.goTo().goToHome();
     List<ContactData> before = app.getContactHelper().getContactList();
     if (! app.getContactHelper().isThereAContact())
     {
@@ -20,7 +20,7 @@ public class ContactDeletionTests extends TestBase {
     }
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteSelectedContact();
-    app.getNavigationHelper().assertConfirmation();
+    app.goTo().assertConfirmation();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size()-1);
 
