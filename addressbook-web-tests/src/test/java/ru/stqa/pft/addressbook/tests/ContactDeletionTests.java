@@ -1,31 +1,40 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import java.util.List;
+import ru.stqa.pft.addressbook.model.Contacts;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 public class ContactDeletionTests extends TestBase {
 
+ @BeforeMethod
+ public void ensurePreconditions(){
+  app.goTo().goHome();
+  if (app.contact().allContacts().size() == 0)
+  {
+   app.contact().create(new ContactData().withFirstname("Santa").withMiddlename("Saint")
+           .withLastname("Claus").withNickname("Red").withCompany("Christmas corp.")
+           .withAddress("2512 Everywhere Avenue").withMobile("+55512349876").withGroup("test1")
+           .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
+  }
+ }
   @Test
    public void testContactDeletion() {
-    app.goTo().goToHome();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    if (! app.getContactHelper().isThereAContact())
-    {
-      app.getContactHelper().createContact(new ContactData("Santa",
-              "Minny", "Claus", "Red", "Christmas corp.",
-              "2512 Everywhere Avenue", "+55512349876", "test1","1",
-              "January", "1900", "Ho Ho Ho!!!"), true);
-    }
-    app.getContactHelper().selectContact();
-    app.getContactHelper().deleteSelectedContact();
-    app.goTo().assertConfirmation();
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size()-1);
 
-    before.remove(0);
-    Assert.assertEquals(before, after);
+    Contacts before = app.contact().allContacts();
+    ContactData cd = before.iterator().next();
+    app.contact().selectContactById(cd.getId());
+    app.contact().deleteSelectedContact();
+    app.goTo().assertConfirmation();
+    Contacts after = app.contact().allContacts();
+
+   assertThat(after.size(), equalTo(before.size()-1));
+
+   assertThat(after, equalTo(before.without(cd)));
+
   }
 
 

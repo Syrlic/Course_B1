@@ -3,56 +3,19 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
+  private int id = Integer.MAX_VALUE;;
   private  String firstname;
-  private final String middlename;
+  private  String middlename;
   private String lastname;
-  private final String nickname;
-  private final String company;
+  private  String nickname;
+  private  String company;
   private String address;
   private String mobile;
   private String group;
-  private final String day;
-  private final String month;
-  private final String year;
-  private final String notes;
-
-  public ContactData(int id, String firstname, String middlename, String lastname,
-                     String nickname, String company, String address, String mobile,
-                     String group, String day, String month, String year, String notes) {
-    this.id = id;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.company = company;
-    this.address = address;
-    this.mobile = mobile;
-    this.group = group;
-    this.day = day;
-    this.month = month;
-    this.year = year;
-    this.notes = notes;
-  }
-
-  public ContactData(String firstname, String middlename,
-                     String lastname, String nickname, String company,
-                     String address, String mobile, String group,
-                     String day, String month, String year, String notes) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.company = company;
-    this.address = address;
-    this.mobile = mobile;
-    this.group = group;
-    this.day = day;
-    this.month = month;
-    this.year = year;
-    this.notes = notes;
-  }
+  private  String day;
+  private  String month;
+  private  String year;
+  private  String notes;
 
   public String getFirstname() {
     return firstname;
@@ -98,25 +61,77 @@ public class ContactData {
     return notes;
   }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
+  public int getId() {
+    return id;
   }
-
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
-  }
-
   public String getGroup() {
     return group;
-
   }
 
-  public void setAddress(String address) {
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+  public ContactData withFirstname(String firstname)
+  {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname)
+  {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
   }
 
-  public void setMobile(String mobile) {
+  public ContactData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withDay(String day) {
+    this.day = day;
+    return this;
+  }
+
+  public ContactData withMonth(String month) {
+    this.month = month;
+    return this;
+  }
+
+  public ContactData withYear(String year) {
+    this.year = year;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
   }
 
   @Override
@@ -124,13 +139,14 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(firstname, that.firstname) &&
+    return id == that.id &&
+            Objects.equals(firstname, that.firstname) &&
             Objects.equals(lastname, that.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname);
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
@@ -142,11 +158,4 @@ public class ContactData {
             '}';
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public int getId() {
-    return id;
-  }
 }
