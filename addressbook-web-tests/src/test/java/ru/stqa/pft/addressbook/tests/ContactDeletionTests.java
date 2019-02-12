@@ -17,7 +17,7 @@ public class ContactDeletionTests extends TestBase {
   {
    app.contact().create(new ContactData().withFirstname("Santa").withMiddlename("Saint")
            .withLastname("Claus").withNickname("Red").withCompany("Christmas corp.")
-           .withAddress("2512 Everywhere Avenue").withMobile("+55512349876").withGroup("test1")
+           .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876").withGroup("test1")
            .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
   }
  }

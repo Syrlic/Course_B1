@@ -13,9 +13,9 @@ public class ContactCreationTests extends TestBase{
   public void testContactCreation() throws Exception {
 
     Contacts before = app.contact().allContacts();
-    ContactData cd = new ContactData().withFirstname("Елисей").withMiddlename("SSS").withLastname("Иванов")
+    ContactData cd = new ContactData().withFirstname("Atlas").withMiddlename("SSS").withLastname("Petrov")
             .withNickname("Red").withCompany("Christmas corp.").withAddress("2512 Everywhere Avenue")
-            .withMobile("+55512349876").withGroup("[none]").withDay("1").withMonth("January")
+            .withMobilePhone("+55512349876").withHomePhone("12-34").withWorkPhone("6654").withGroup("[none]").withDay("1").withMonth("January")
             .withYear("1900").withNotes("Ho Ho Ho!!!");
     app.contact().create(cd, true);
     Contacts after = app.contact().allContacts();

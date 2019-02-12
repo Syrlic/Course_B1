@@ -17,7 +17,7 @@ public class ContactModificationTests extends TestBase {
     {
       app.contact().create(new ContactData().withFirstname("Santa")
               .withMiddlename("Saint").withLastname("Mouse").withNickname("Red").withCompany("Christmas corp.")
-              .withAddress("2512 Everywhere Avenue").withMobile("+55512349876").withGroup("test8")
+              .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876").withGroup("test8")
               .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
     }
   }
@@ -29,7 +29,7 @@ public class ContactModificationTests extends TestBase {
     ContactData cd = new ContactData().withId(modifyContact.getId())
             .withFirstname("Андрей").withMiddlename("HHHH").withLastname("Воробей")
             .withNickname("Red").withCompany("Christmas corp.").withAddress("2512 Everywhere Avenue")
-            .withMobile("+55512349876").withDay("1").withMonth("January").withYear("1900")
+            .withMobilePhone("+55512349876").withDay("1").withMonth("January").withYear("1900")
             .withNotes("Ho Ho Ho!!!");
     app.contact().initContactModificationById(modifyContact.getId());
     app.contact().fillContactForm(cd, false);
