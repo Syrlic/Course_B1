@@ -7,10 +7,10 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
-public class ContactPhoneTests extends TestBase {
+public class ContactAddressTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
@@ -20,26 +20,23 @@ public class ContactPhoneTests extends TestBase {
       app.contact().create(new ContactData().withFirstname("Santa")
               .withMiddlename("Saint").withLastname("Mouse").withNickname("Red").withCompany("Christmas corp.")
               .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876").withHomePhone("98765-4321")
-              .withWorkPhone("23-23-23").withGroup("test8")
+              .withWorkPhone("23-23-23").withEmail("jybi123@mailinator-dfc.com")
+              .withEmail2("vydi.red@mailinator.net").withEmail3("pofenaAndreychenko_29.12.1999@mailinator.ru")
               .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
     }
   }
-  @Test(enabled = true)
-  public void testContactPhones(){
+
+  @Test
+  public void testContactAddress(){
     app.goTo().goHome();
     ContactData contactData = app.contact().allContacts().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contactData);
 
-    assertThat(contactData.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contactData.getAddress(), equalTo(clearAddress(contactInfoFromEditForm.getAddress())));
   }
 
-  private String mergePhones(ContactData contact) {
-    return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream()
-            .filter((s)-> ! s.equals("")).map(ContactPhoneTests::clened)
-            .collect(Collectors.joining("\n"));
-  }
-
-  public static String clened(String phone){
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  public String clearAddress(String address){
+    String[] str = address.split("\n");
+    return Arrays.asList(str).stream().map((s)-> s.trim()).collect(Collectors.joining("\n"));
   }
 }

@@ -73,12 +73,17 @@ public class ContactHelper extends HelperBase{
     initContactModificationById(contact.getId());
     String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getText();
     String modilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
     String workPhone = wd.findElement(By.name("work")).getAttribute("value");
     String homePhone = wd.findElement(By.name("home")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withLastname(lastName).withFirstname(firstName)
-            .withHomePhone(homePhone).withMobilePhone(modilePhone).withWorkPhone(workPhone);
+            .withHomePhone(homePhone).withMobilePhone(modilePhone).withWorkPhone(workPhone).withEmail(email)
+            .withEmail2(email2).withEmail3(email3).withAddress(address);
 
   }
   public boolean isThereAContact() {
@@ -92,11 +97,11 @@ public class ContactHelper extends HelperBase{
       for (WebElement we : element) {
         List<WebElement> cells = we.findElements(By.tagName("td"));
         String allPhones = cells.get(5).getText();
-     //   String[] phones = allPhones.split("\n");
+        String allemails = cells.get(4).getText();
         ContactData contact = new ContactData()
                 .withId(Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value")))
                 .withLastname(cells.get(1).getText()).withFirstname(cells.get(2).getText())
-                .withAddress(cells.get(3).getText()).withAllPhones(allPhones);
+                .withAddress(cells.get(3).getText()).withAllPhones(allPhones).withAllEmails(allemails);
              //   .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]);
 
         contacts.add(contact);
