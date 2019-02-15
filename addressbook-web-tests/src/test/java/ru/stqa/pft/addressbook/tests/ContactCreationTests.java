@@ -4,6 +4,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -13,10 +15,11 @@ public class ContactCreationTests extends TestBase{
   public void testContactCreation() throws Exception {
 
     Contacts before = app.contact().allContacts();
+    File photo = new File("src/test/resources/robot.JPG");
     ContactData cd = new ContactData().withFirstname("Atlas").withMiddlename("SSS").withLastname("Petrov")
             .withNickname("Red").withCompany("Christmas corp.").withAddress("2512 Everywhere Avenue")
             .withMobilePhone("+55512349876").withHomePhone("12-34").withWorkPhone("6654").withGroup("[none]").withDay("1").withMonth("January")
-            .withYear("1900").withNotes("Ho Ho Ho!!!");
+            .withYear("1900").withPhoto(photo);
     app.contact().create(cd, true);
     Contacts after = app.contact().allContacts();
 
