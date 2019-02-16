@@ -52,6 +52,7 @@ public class ContactData {
   @Expose
   private File photo;
 
+
   public File getPhoto() {
     return photo;
   }

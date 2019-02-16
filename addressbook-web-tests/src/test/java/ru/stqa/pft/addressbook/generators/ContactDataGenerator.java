@@ -72,7 +72,7 @@ public class ContactDataGenerator {
     Writer writer = new FileWriter(file);
     for (ContactData item : contacts){
       writer.write(String.format("%s;%s;%s;%s;%s\n", item.getFirstname(), item.getLastname(),
-              item.getHomePhone(), item.getAddress(), item.getAllEmails()));
+              item.getHomePhone(), item.getAddress(), item.getEmail()));
     }
     writer.close();
   }
@@ -81,8 +81,12 @@ public class ContactDataGenerator {
       List<ContactData> contacts = new ArrayList<>();
       for (int i = 0; i < count; i++){
         contacts.add(new ContactData().withFirstname(String.format("FirstName-%s", i))
-                .withLastname(String.format("LastName-%s", i)).withHomePhone(String.format("HomePhone-%s", i))
-                .withAddress(String.format("Address-%s", i)).withAllEmails(String.format("AllEmails-%s", i)));
+                .withMiddlename(String.format("MiddleName-%s", i)).withLastname(String.format("LastName-%s", i))
+                .withNickname(String.format("NickName-%s", i)).withCompany(String.format("Company-%s", i))
+                .withAddress(String.format("Address-%s", i)).withHomePhone(String.format("HomePhone-%s", i))
+                .withMobilePhone(String.format("MobilePhone-%s", i)).withWorkPhone(String.format("WorkPhone-%s", i))
+                .withDay("1").withMonth("January").withYear("1900").withNotes(String.format("HO-%s-Ho", i))
+                .withGroup("[none]").withEmail(String.format("email-%s", i)));
       }
       return contacts;
   }
