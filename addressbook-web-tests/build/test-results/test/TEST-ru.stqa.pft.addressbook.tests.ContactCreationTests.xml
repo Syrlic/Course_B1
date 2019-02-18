@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactCreationTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-02-16T10:08:13" hostname="DESKTOP-J8PA5VV" time="47.453">
+  <properties/>
+  <testcase name="testContactCreation[0](ContactData{id=0, firstname='FirstName-0', lastname='LastName-0'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="11.562"/>
+  <testcase name="testContactCreation[1](ContactData{id=0, firstname='FirstName-1', lastname='LastName-1'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="11.463"/>
+  <testcase name="testContactCreation[2](ContactData{id=0, firstname='FirstName-2', lastname='LastName-2'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="12.113"/>
+  <testcase name="testContactCreation[3](ContactData{id=0, firstname='FirstName-3', lastname='LastName-3'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="12.315"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Security framework of XStream not initialized, XStream is probably vulnerable.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+]]></system-err>
+</testsuite>

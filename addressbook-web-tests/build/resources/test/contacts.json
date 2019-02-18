@@ -1,0 +1,53 @@
+[
+  {
+    "firstname": "FirstName-0",
+    "middlename": "MiddleName-0",
+    "lastname": "LastName-0",
+    "nickname": "NickName-0",
+    "company": "Company-0",
+    "address": "Address-0",
+    "mobilePhone": "MobilePhone-0",
+    "homePhone": "HomePhone-0",
+    "workPhone": "WorkPhone-0",
+    "email": "email-0",
+    "group": "[none]",
+    "day": "1",
+    "month": "January",
+    "year": "1900",
+    "notes": "HO-0-Ho"
+  },
+  {
+    "firstname": "FirstName-1",
+    "middlename": "MiddleName-1",
+    "lastname": "LastName-1",
+    "nickname": "NickName-1",
+    "company": "Company-1",
+    "address": "Address-1",
+    "mobilePhone": "MobilePhone-1",
+    "homePhone": "HomePhone-1",
+    "workPhone": "WorkPhone-1",
+    "email": "email-1",
+    "group": "[none]",
+    "day": "1",
+    "month": "January",
+    "year": "1900",
+    "notes": "HO-1-Ho"
+  },
+  {
+    "firstname": "FirstName-2",
+    "middlename": "MiddleName-2",
+    "lastname": "LastName-2",
+    "nickname": "NickName-2",
+    "company": "Company-2",
+    "address": "Address-2",
+    "mobilePhone": "MobilePhone-2",
+    "homePhone": "HomePhone-2",
+    "workPhone": "WorkPhone-2",
+    "email": "email-2",
+    "group": "[none]",
+    "day": "1",
+    "month": "January",
+    "year": "1900",
+    "notes": "HO-2-Ho"
+  }
+]
