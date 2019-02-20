@@ -3,58 +3,165 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
-  @XStreamOmitField
-  private int id = Integer.MAX_VALUE;
-  @Expose
-  private  String firstname;
-  @Expose
-  private  String middlename;
-  @Expose
-  private String lastname;
-  @Expose
-  private  String nickname;
-  @Expose
-  private  String company;
-  @Expose
-  private String address;
-  @Expose
-  private String mobilePhone;
-  @Expose
-  private String homePhone;
-  @Expose
-  private String workPhone;
-  @Expose
-  private String allPhones;
-  @Expose
-  private String email;
-  @Expose
-  private String email2;
-  @Expose
-  private String email3;
-  @Expose
-  private String allEmails;
-  @Expose
-  private String group;
-  @Expose
-  private  String day;
-  @Expose
-  private  String month;
-  @Expose
-  private  String year;
-  @Expose
-  private  String notes;
-  @Expose
-  private File photo;
 
+  @XStreamOmitField
+  @Id
+  @Column(name = "id")
+  private int id = Integer.MAX_VALUE;
+
+  @Expose
+  @Column(name = "firstname")
+  private  String firstname;
+
+  @Expose
+  @Column(name = "middlename")
+  private  String middlename;
+
+  @Expose
+  @Column(name = "lastname")
+  private String lastname;
+
+  @Expose
+  @Column(name = "nickname")
+  private  String nickname;
+
+  @Expose
+  @Column(name = "company")
+  private  String company;
+
+  @Expose
+  @Column(name = "address")
+  @Type(type = "text")
+  private String address;
+
+  @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
+  private String mobilePhone;
+
+  @Expose
+  @Column(name = "home")
+  @Type(type = "text")
+  private String homePhone;
+
+  @Expose
+  @Column(name = "work")
+  @Type(type = "text")
+  private String workPhone;
+
+  @Expose
+  @Transient
+  private String allPhones;
+
+  @Expose
+  @Column(name = "email")
+  @Type(type = "text")
+  private String email;
+
+  @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
+  private String email2;
+
+  @Expose
+  @Column(name = "email3")
+  @Type(type = "text")
+  private String email3;
+
+  @Expose
+  @Transient
+  private String allEmails;
+
+  @Expose
+  @Transient
+  private String group;
+
+  @Expose
+  @Column(name = "bday")
+  @Transient
+  private  String day;
+
+  @Expose
+  @Column(name = "bmonth")
+  @Transient
+  private  String month;
+
+  @Expose
+  @Column(name = "byear")
+  @Transient
+  private  String year;
+
+  @Expose
+  @Column(name = "notes")
+  @Type(type = "text")
+  private  String notes;
+
+  @Expose
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(firstname, that.firstname) &&
+            Objects.equals(middlename, that.middlename) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(nickname, that.nickname) &&
+            Objects.equals(company, that.company) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(notes, that.notes);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstname, middlename, lastname, nickname, company, address, notes);
+  }
+
+  @Expose
+  @Column(name = "title")
+  private String title;
+
+  @Expose
+  @Column(name = "homepage")
+  @Type(type = "text")
+  private String homepage;
+
+  public String getTitle() {
+    return title;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public String getHomepage() {
+    return homepage;
+  }
+
+  public ContactData withHomepage(String homepage) {
+    this.homepage = homepage;
+    return this;
+  }
 
   public File getPhoto() {
-    return photo;
+    if(photo == null){
+      return null;}
+    return new File(photo);
   }
 
   public String getFirstname() {
@@ -181,7 +288,7 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -237,21 +344,6 @@ public class ContactData {
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
     return this;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
   }
 
   @Override

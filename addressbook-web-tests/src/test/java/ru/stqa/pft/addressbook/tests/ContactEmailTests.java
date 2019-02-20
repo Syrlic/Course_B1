@@ -15,8 +15,7 @@ public class ContactEmailTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().goHome();
-    if(app.contact().allContacts().size() == 0)
-    {
+    if(app.db().contacts().size() == 0){
       app.contact().create(new ContactData().withFirstname("Santa")
               .withMiddlename("Saint").withLastname("Mouse").withNickname("Red").withCompany("Christmas corp.")
               .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876").withHomePhone("98765-4321")
@@ -25,6 +24,7 @@ public class ContactEmailTests extends TestBase {
               .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
     }
   }
+
   @Test
   public void testContactEmails(){
     app.goTo().goHome();

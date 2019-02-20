@@ -15,7 +15,7 @@ public class ContactPhoneTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().goHome();
-    if(app.contact().allContacts().size() == 0)
+    if(app.db().contacts().size() == 0)
     {
       app.contact().create(new ContactData().withFirstname("Santa")
               .withMiddlename("Saint").withLastname("Mouse").withNickname("Red").withCompany("Christmas corp.")
@@ -24,6 +24,7 @@ public class ContactPhoneTests extends TestBase {
               .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
     }
   }
+  
   @Test(enabled = true)
   public void testContactPhones(){
     app.goTo().goHome();

@@ -104,7 +104,7 @@ public class ContactHelper extends HelperBase{
                 .withId(Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value")))
                 .withLastname(cells.get(1).getText()).withFirstname(cells.get(2).getText())
                 .withAddress(cells.get(3).getText()).withAllPhones(allPhones).withAllEmails(allemails);
-             //   .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]);
+
 
         contacts.add(contact);
       }

@@ -55,10 +55,10 @@ public class ContactCreationTests extends TestBase{
     @Test(dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) throws Exception {
 
-    Contacts before = app.contact().allContacts();
+    Contacts before = app.db().contacts();
   //  File photo = new File("src/test/resources/robot.JPG");
     app.contact().create(contact, true);
-    Contacts after = app.contact().allContacts();
+    Contacts after = app.db().contacts();
 
     assertThat(after.size(), equalTo(before.size()+1));
 
