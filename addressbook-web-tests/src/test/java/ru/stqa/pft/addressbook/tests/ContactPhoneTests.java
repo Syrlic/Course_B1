@@ -24,7 +24,7 @@ public class ContactPhoneTests extends TestBase {
               .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
     }
   }
-  
+
   @Test(enabled = true)
   public void testContactPhones(){
     app.goTo().goHome();

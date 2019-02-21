@@ -93,12 +93,10 @@ public class ContactData {
 
   @Expose
   @Column(name = "bmonth")
-  @Transient
   private  String month;
 
   @Expose
   @Column(name = "byear")
-  @Transient
   private  String year;
 
   @Expose
@@ -110,26 +108,6 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(firstname, that.firstname) &&
-            Objects.equals(middlename, that.middlename) &&
-            Objects.equals(lastname, that.lastname) &&
-            Objects.equals(nickname, that.nickname) &&
-            Objects.equals(company, that.company) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(notes, that.notes);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstname, middlename, lastname, nickname, company, address, notes);
-  }
 
   @Expose
   @Column(name = "title")
@@ -355,4 +333,33 @@ public class ContactData {
             '}';
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(firstname, that.firstname) &&
+            Objects.equals(middlename, that.middlename) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(nickname, that.nickname) &&
+            Objects.equals(company, that.company) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(mobilePhone, that.mobilePhone) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(workPhone, that.workPhone) &&
+            Objects.equals(email, that.email) &&
+            Objects.equals(email2, that.email2) &&
+            Objects.equals(email3, that.email3) &&
+            Objects.equals(month, that.month) &&
+            Objects.equals(year, that.year) &&
+            Objects.equals(notes, that.notes) &&
+            Objects.equals(title, that.title) &&
+            Objects.equals(homepage, that.homepage);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstname, middlename, lastname, nickname, company, address, mobilePhone, homePhone, workPhone, email, email2, email3, month, year, notes, title, homepage);
+  }
 }

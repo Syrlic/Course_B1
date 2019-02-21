@@ -19,23 +19,111 @@ public class ContactHelper extends HelperBase{
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.getFirstname());
-    type(By.name("middlename"), contactData.getMiddlename());
-    type(By.name("lastname"), contactData.getLastname());
-    type(By.name("nickname"), contactData.getNickname());
-    attach(By.name("photo"), contactData.getPhoto());
-    type(By.name("company"), contactData.getCompany());
-    type(By.name("address"), contactData.getAddress());
-    type(By.name("mobile"), contactData.getMobilePhone());
-    type(By.name("home"), contactData.getHomePhone());
-    type(By.name("work"), contactData.getWorkPhone());
-    type(By.name("email"), contactData.getEmail());
-    select(By.name("bday"), contactData.getDay());
-    select(By.name("bmonth"), contactData.getMonth());
-    type(By.name("byear"), contactData.getYear());
-    type(By.name("notes"), contactData.getNotes());
+    if(contactData.getFirstname() != null){
+      type(By.name("firstname"), contactData.getFirstname());
+    } else {
+      contactData.withFirstname("");
+      type(By.name("firstname"), contactData.getFirstname());
+    }
+    if(contactData.getMiddlename() != null){
+      type(By.name("middlename"), contactData.getMiddlename());
+    }else {
+      contactData.withMiddlename("");
+      type(By.name("middlename"), contactData.getMiddlename());
+    }
+    if(contactData.getLastname() != null){
+      type(By.name("lastname"), contactData.getLastname());
+    }else {
+      contactData.withLastname("");
+      type(By.name("lastname"), contactData.getLastname());
+    }
+    if(contactData.getNickname() != null){
+      type(By.name("nickname"), contactData.getNickname());
+    }else {
+      contactData.withNickname("");
+      type(By.name("nickname"), contactData.getNickname());
+    }
+    if(contactData.getPhoto() != null){
+      attach(By.name("photo"), contactData.getPhoto());
+    }
+    if(contactData.getCompany() != null){
+      type(By.name("company"), contactData.getCompany());
+    }else {
+      contactData.withCompany("");
+      type(By.name("company"), contactData.getCompany());
+    }
+    if(contactData.getAddress() != null){
+      type(By.name("address"), contactData.getAddress());
+    }else {
+      contactData.withAddress("");
+      type(By.name("address"), contactData.getAddress());
+    }
+    if(contactData.getMobilePhone() != null){
+      type(By.name("mobile"), contactData.getMobilePhone());
+    }else {
+      contactData.withMobilePhone("");
+      type(By.name("mobile"), contactData.getMobilePhone());
+    }
+    if(contactData.getHomePhone() != null){
+      type(By.name("home"), contactData.getHomePhone());
+    }else {
+      contactData.withHomePhone("");
+      type(By.name("home"), contactData.getHomePhone());
+    }
+    if(contactData.getWorkPhone() != null){
+      type(By.name("work"), contactData.getWorkPhone());
+    } else {
+      contactData.withWorkPhone("");
+      type(By.name("work"), contactData.getWorkPhone());
+    }
+    if(contactData.getEmail() != null){
+      type(By.name("email"), contactData.getEmail());
+    }else {
+      contactData.withEmail("");
+      type(By.name("email"), contactData.getEmail());
+    }
+    if(contactData.getEmail2() != null){
+      type(By.name("email2"), contactData.getEmail2());
+    }else {
+      contactData.withEmail2("");
+      type(By.name("email2"), contactData.getEmail2());
+    }
+    if(contactData.getEmail3() != null){
+      type(By.name("email3"), contactData.getEmail3());
+    }else {
+      contactData.withEmail3("");
+      type(By.name("email3"), contactData.getEmail3());
+    }
+    if(contactData.getDay() != null){
+      select(By.name("bday"), contactData.getDay());
+    }
+    if(contactData.getMonth() != null){
+      select(By.name("bmonth"), contactData.getMonth());
+    }
+    if(contactData.getYear() != null){
+      type(By.name("byear"), contactData.getYear());
+    }
+    if(contactData.getNotes() != null){
+      type(By.name("notes"), contactData.getNotes());
+    }else {
+      contactData.withNotes("");
+      type(By.name("notes"), contactData.getNotes());
+    }
+    if(contactData.getTitle() != null){
+      type(By.name("title"), contactData.getTitle());
+    }else {
+      contactData.withTitle("");
+      type(By.name("title"), contactData.getTitle());
+    }
+    if(contactData.getHomepage() != null){
+      type(By.name("homepage"), contactData.getHomepage());
+    }else {
+      contactData.withHomepage("");
+      type(By.name("homepage"), contactData.getHomepage());
+    }
 
     if(creation){
+      if(contactData.getGroup() != null)
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     }else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
