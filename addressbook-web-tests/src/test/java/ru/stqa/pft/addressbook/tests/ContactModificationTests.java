@@ -16,7 +16,7 @@ public class ContactModificationTests extends TestBase {
     if(app.db().contacts().size() == 0){
       app.contact().create(new ContactData().withFirstname("Santa")
               .withMiddlename("Saint").withLastname("Mouse").withNickname("Red").withCompany("Christmas corp.")
-              .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876").withGroup("test8")
+              .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876")
               .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
     }
   }
@@ -26,9 +26,9 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.db().contacts();
     ContactData modifyContact = before.iterator().next();
     ContactData cd = new ContactData().withId(modifyContact.getId())
-            .withFirstname("Виталий").withMiddlename("МММММММ").withLastname("Витайлов")
+            .withFirstname("SS").withMiddlename("SSSS").withLastname("SSS")
             .withNickname("Red").withCompany("фабрика Масленница").withAddress("2512 Everywhere Avenue")
-            .withMobilePhone("+3333333333").withEmail3("pop@df.ru")
+            .withMobilePhone("+3333333333").withHomePhone("222222").withEmail("tre@tre").withEmail3("pop@df.ru")
             .withDay("11").withMonth("July").withYear("2010");
     app.contact().initContactModificationById(modifyContact.getId());
     app.contact().fillContactForm(cd, false);
@@ -38,8 +38,8 @@ public class ContactModificationTests extends TestBase {
     assertThat(after.size(), equalTo(before.size()));
 
     assertThat(after, equalTo(before.without(modifyContact).withAdded(cd)));
+    verifyContactListUI();
 
   }
-
 
 }

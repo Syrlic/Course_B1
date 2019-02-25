@@ -5,13 +5,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-  @XStreamAlias("group")
+@XStreamAlias("group")
   @Entity
   @Table(name = "group_list")
   public class GroupData {
@@ -35,6 +34,13 @@ import java.util.Objects;
   @Type(type = "text")
   private String footer;
 
+  @Expose
+  @ManyToMany(mappedBy = "groupDataSet")
+  private Set<ContactData> contacts = new HashSet<>();
+
+  public Contacts getContacts() {
+    return new Contacts(contacts);
+  }
 
   public String getName() {
     return name;
@@ -48,14 +54,8 @@ import java.util.Objects;
     return footer;
   }
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            '}';
-  }
-  public int getId() {
+
+    public int getId() {
     return id;
   }
   public GroupData withId(int id) {
@@ -94,4 +94,14 @@ import java.util.Objects;
     return Objects.hash(id, name, header, footer);
   }
 
-}
+    @Override
+    public String toString() {
+      return "GroupData{" +
+              "id=" + id +
+              ", name='" + name + '\'' +
+              ", header='" + header + '\'' +
+              ", footer='" + footer + '\'' +
+              '}';
+    }
+
+  }

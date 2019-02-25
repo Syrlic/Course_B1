@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,7 +54,7 @@ public class ContactCreationTests extends TestBase{
   }
 
     @Test(dataProvider = "validContactsFromXml")
-  public void testContactCreation(ContactData contact) throws Exception {
+  public void testContactCreationFromFile(ContactData contact) throws Exception {
 
     Contacts before = app.db().contacts();
   //  File photo = new File("src/test/resources/robot.JPG");
@@ -64,6 +65,24 @@ public class ContactCreationTests extends TestBase{
 
     assertThat(after, equalTo(before
             .withAdded(contact.withId(after.stream().mapToInt((c)-> (c.getId())).max().getAsInt()))));
+      verifyContactListUI();
   }
 
+  @Test
+  public void testContactCreation(){
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/robot.JPG");
+    ContactData cd = new ContactData().withPhoto(photo).inGroups(groups.iterator().next())
+            .withFirstname("Tommy").withLastname("Tom").withEmail("tom@tom");
+    Contacts before = app.db().contacts();
+    app.goTo().goHome();
+    app.contact().create(cd, true);
+    Contacts after = app.db().contacts();
+
+    assertThat(after.size(), equalTo(before.size()+1));
+
+    assertThat(after, equalTo(before
+            .withAdded(cd.withId(after.stream().mapToInt((c)-> (c.getId())).max().getAsInt()))));
+
+  }
 }

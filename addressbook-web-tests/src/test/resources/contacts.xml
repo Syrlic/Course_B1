@@ -10,7 +10,6 @@
     <homePhone>HomePhone-0</homePhone>
     <workPhone>WorkPhone-0</workPhone>
     <email>email-0</email>
-    <group>[none]</group>
     <day>1</day>
     <month>January</month>
     <year>1900</year>
@@ -27,7 +26,6 @@
     <homePhone>HomePhone-1</homePhone>
     <workPhone>WorkPhone-1</workPhone>
     <email>email-1</email>
-    <group>[none]</group>
     <day>1</day>
     <month>January</month>
     <year>1900</year>
@@ -44,7 +42,6 @@
     <homePhone>HomePhone-2</homePhone>
     <workPhone>WorkPhone-2</workPhone>
     <email>email-2</email>
-    <group>[none]</group>
     <day>1</day>
     <month>January</month>
     <year>1900</year>
@@ -61,7 +58,6 @@
     <homePhone>HomePhone-3</homePhone>
     <workPhone>WorkPhone-3</workPhone>
     <email>email-3</email>
-    <group>[none]</group>
     <day>1</day>
     <month>January</month>
     <year>1900</year>

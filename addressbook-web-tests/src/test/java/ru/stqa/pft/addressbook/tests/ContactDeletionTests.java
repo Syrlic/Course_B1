@@ -16,7 +16,7 @@ public class ContactDeletionTests extends TestBase {
   if(app.db().contacts().size() == 0){
    app.contact().create(new ContactData().withFirstname("Santa").withMiddlename("Saint")
            .withLastname("Claus").withNickname("Red").withCompany("Christmas corp.")
-           .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876").withGroup("test1")
+           .withAddress("2512 Everywhere Avenue").withMobilePhone("+55512349876")
            .withDay("1").withMonth("January").withYear("1900").withNotes("Ho Ho Ho!!!"), true);
   }
  }
@@ -34,7 +34,7 @@ public class ContactDeletionTests extends TestBase {
    assertThat(after.size(), equalTo(before.size()-1));
 
    assertThat(after, equalTo(before.without(cd)));
-
+   verifyContactListUI();
   }
 
 

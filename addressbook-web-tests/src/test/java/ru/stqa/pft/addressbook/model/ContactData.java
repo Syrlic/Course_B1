@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -83,10 +85,6 @@ public class ContactData {
   private String allEmails;
 
   @Expose
-  @Transient
-  private String group;
-
-  @Expose
   @Column(name = "bday")
   @Transient
   private  String day;
@@ -117,6 +115,21 @@ public class ContactData {
   @Column(name = "homepage")
   @Type(type = "text")
   private String homepage;
+
+  @Expose
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+          inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groupDataSet = new HashSet<GroupData>();
+
+  public Groups getGroups() {
+    return new Groups(groupDataSet);
+  }
+
+  public ContactData inGroups(GroupData group) {
+    groupDataSet.add(group);
+    return this;
+  }
 
   public String getTitle() {
     return title;
@@ -200,9 +213,6 @@ public class ContactData {
   public int getId() {
     return id;
   }
-  public String getGroup() {
-    return group;
-  }
 
   public String getEmail() {
     return email;
@@ -280,11 +290,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public ContactData withDay(String day) {
     this.day = day;
     return this;
@@ -329,7 +334,7 @@ public class ContactData {
     return "ContactData{" +
             "id=" + id +
             ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
+            ", groupDataSet=" + groupDataSet +
             '}';
   }
 
@@ -360,6 +365,8 @@ public class ContactData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, middlename, lastname, nickname, company, address, mobilePhone, homePhone, workPhone, email, email2, email3, month, year, notes, title, homepage);
+    return Objects.hash(id, firstname, middlename, lastname,
+            nickname, company, address, mobilePhone, homePhone,
+            workPhone, email, email2, email3, month, year, notes, title, homepage);
   }
 }
