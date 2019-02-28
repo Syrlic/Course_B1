@@ -35,7 +35,7 @@ import java.util.Set;
   private String footer;
 
   @Expose
-  @ManyToMany(mappedBy = "groupDataSet")
+  @ManyToMany(mappedBy = "groupDataSet",fetch = FetchType.EAGER)
   private Set<ContactData> contacts = new HashSet<>();
 
   public Contacts getContacts() {

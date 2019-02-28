@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
@@ -37,7 +38,7 @@ public class GroupHelper extends HelperBase{
     click(By.name("delete"));
   }
 
-  private void selectGroupById(int id) {
+  public void selectGroupById(int id) {
     wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
   }
 
@@ -100,4 +101,16 @@ public class GroupHelper extends HelperBase{
   }
 
 
+  public void submitAddToGroup() {
+    click(By.cssSelector("input[name='add']"));
+  }
+
+  public void selectGroupFromListById(int id) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(id));
+  }
+
+  public void selectGroupWithContactsById(int id) {
+    new Select(wd.findElement(By.cssSelector("select[name='group']"))).selectByValue(String.valueOf(id));
+  }
+  //By.name("group")
 }

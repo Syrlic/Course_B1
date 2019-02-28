@@ -19,7 +19,7 @@ public class ContactData {
   @XStreamOmitField
   @Id
   @Column(name = "id")
-  private int id = Integer.MAX_VALUE;
+  private Integer id = Integer.MAX_VALUE;
 
   @Expose
   @Column(name = "firstname")
@@ -334,6 +334,26 @@ public class ContactData {
     return "ContactData{" +
             "id=" + id +
             ", firstname='" + firstname + '\'' +
+            ", middlename='" + middlename + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", email='" + email + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            ", day='" + day + '\'' +
+            ", month='" + month + '\'' +
+            ", year='" + year + '\'' +
+            ", notes='" + notes + '\'' +
+            ", photo='" + photo + '\'' +
+            ", title='" + title + '\'' +
+            ", homepage='" + homepage + '\'' +
             ", groupDataSet=" + groupDataSet +
             '}';
   }
