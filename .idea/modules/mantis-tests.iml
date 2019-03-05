@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../mantis-tests">
-      <sourceFolder url="file://$MODULE_DIR$/../../mantis-tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../mantis-tests/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../mantis-tests/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../mantis-tests/out" />
