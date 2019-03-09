@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
       long start = System.currentTimeMillis();
       while (System.currentTimeMillis() < start + timeout) {
         if (wiser.getMessages().size() >= count) {
+          System.out.println("Messages:  "+wiser.getMessages().size());
           return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
         }
         try {
@@ -38,6 +39,7 @@ import java.util.stream.Collectors;
     public static MailMessage toModelMail (WiserMessage m){
       try {
         MimeMessage mm = m.getMimeMessage();
+        System.out.println(mm.getContent().toString());
         return new MailMessage(mm.getAllRecipients()[0].toString(), (String) mm.getContent());
       } catch (MessagingException e) {
         e.printStackTrace();

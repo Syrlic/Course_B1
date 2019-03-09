@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
+  private UserHelper user;
   private WebDriver wd;
   private final Properties properties;
   private String browser;
@@ -22,6 +23,8 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private NavigationHelper navigationHelper;
+  private DbHelper dBHelper;
 
 
   public ApplicationManager(String browser) {
@@ -60,6 +63,12 @@ public class ApplicationManager {
     return ftp;
   }
 
+  public DbHelper db(){
+    if(dBHelper == null){
+      dBHelper = new DbHelper();
+    }
+    return dBHelper;
+  }
   public WebDriver getDriver() {
     if (wd == null){
       if(browser.equals(BrowserType.FIREFOX)){
@@ -89,5 +98,19 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public NavigationHelper goTO(){
+    if(navigationHelper == null) {
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
+
+  public UserHelper user(){
+    if(user == null){
+      user = new UserHelper(this);
+    }
+    return user;
   }
 }

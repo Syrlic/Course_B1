@@ -21,7 +21,7 @@ import java.util.List;
 
     public HttpSession(ApplicationManager app) {
       this.app = app;
-      //создание новой сессии для работы по протоколу HTTP
+      //создание объекта новой сессии для работы по протоколу HTTP
       httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
     }
 
