@@ -27,6 +27,7 @@ public class ChangeUserPasswordTests extends TestBase {
     app.user().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.goTO().manageUsersMenu();
     User user = app.user().chooseUser();
+    app.user().chooseUserById(user.getId());
     app.user().resetPassword();
     List<MailMessage> mail = app.mail().waitForMail(1, 20000);
     String link = app.user().findConfirmationLink(mail, user.getEmail());

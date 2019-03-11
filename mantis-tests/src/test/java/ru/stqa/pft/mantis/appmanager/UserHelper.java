@@ -33,10 +33,13 @@ public class UserHelper extends HelperBase {
         user = users.iterator().next();
         id = user.getId();
       }
-      click(By.cssSelector("a[href='manage_user_edit_page.php?user_id="+id+"']"));
       return user;
     }
     return null;
+  }
+
+  public void chooseUserById(int id) {
+    click(By.cssSelector("a[href='manage_user_edit_page.php?user_id="+id+"']"));
   }
 
   public String findConfirmationLink(List<MailMessage> mailMessages, String email) {

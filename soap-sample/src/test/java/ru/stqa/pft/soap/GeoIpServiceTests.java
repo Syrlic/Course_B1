@@ -4,7 +4,7 @@ import com.lavasoft.GeoIPService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GoeIpServiceTests {
+public class GeoIpServiceTests {
 
   @Test
   public void testMyIp(){
