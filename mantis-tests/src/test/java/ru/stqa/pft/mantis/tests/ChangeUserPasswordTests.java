@@ -1,15 +1,14 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.User;
 
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import static org.testng.Assert.*;
 
@@ -18,11 +17,12 @@ public class ChangeUserPasswordTests extends TestBase {
   @BeforeMethod
   public void startMailServer() {
     app.mail().start();
-    app.goTO().home();
   }
 
   @Test
-  public void testUserPasswordChanging() throws IOException {
+  public void testUserPasswordChanging() throws IOException, ServiceException {
+    skipIfNotFixedMantis(2);
+    app.goTO().home();
     String passwordNew = "123456789";
     app.user().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.goTO().manageUsersMenu();
@@ -33,7 +33,7 @@ public class ChangeUserPasswordTests extends TestBase {
     String link = app.user().findConfirmationLink(mail, user.getEmail());
     app.user().changePassword(link, user, passwordNew);
 
-    assertTrue(app.newSession().login(user.getName(), passwordNew));
+    assertTrue(app.newSession().login(user.getName(), passwordNew, true));
   }
 
 

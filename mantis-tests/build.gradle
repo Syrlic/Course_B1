@@ -17,6 +17,9 @@ dependencies {
     compile("mysql:mysql-connector-java:8.0.15")
     compile("org.hibernate:hibernate-core:5.4.1.Final")
     compile("biz.futureware.mantis:mantis-axis-soap-client:1.2.19")
+    compile("com.google.code.gson:gson:2.8.5")
+    compile("io.rest-assured:rest-assured:3.3.0")
+    compile("org.apache.httpcomponents:fluent-hc:4.5.7")
 }
 test{
     useTestNG(){

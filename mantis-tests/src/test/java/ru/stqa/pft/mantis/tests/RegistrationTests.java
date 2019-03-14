@@ -1,16 +1,18 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
-  public class RegistrationTests extends TestBase {
+import static org.testng.Assert.*;
+
+public class RegistrationTests extends TestBase {
 
 
     @BeforeMethod
@@ -19,7 +21,8 @@ import java.util.List;
     }
 
     @Test
-    public void testRegisration() throws IOException, MessagingException {
+    public void testRegisration() throws IOException, MessagingException, ServiceException {
+      skipIfNotFixedMantis(2);
       long now = System.currentTimeMillis();
       String email = String.format("user%s@localhost.localdomain", now);
   //    String email = String.format("user%s@localhost", now);
@@ -31,8 +34,7 @@ import java.util.List;
   //    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 80000);
       String link = app.user().findConfirmationLink(mailMessages, email);
       app.regisration().finish(link, password, user);
-
-      Assert.assertTrue(app.newSession().login(user, password));
+      assertTrue(app.newSession().login(user, password, true));
     }
 
 

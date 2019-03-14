@@ -25,7 +25,7 @@ import java.util.List;
       httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
     }
 
-    public boolean login(String username, String password) throws IOException {
+    public boolean login(String username, String password, boolean registration) throws IOException {
       //создание запроса с параметрами(пустой)
       HttpPost post = new HttpPost(app.getProperty("web.baseURL")+"/login.php");
       //создание параметров запроса
@@ -40,8 +40,11 @@ import java.util.List;
       CloseableHttpResponse response = httpClient.execute(post);
       //получение данных страницы из ответа
       String body = getTextFrom(response);
+      if(registration){
+        return body.contains(String.format("<a href=\"/mantisbt-2.19.0/account_page.php\">%s ( %s ) </a>", username, username));
+      }
       //return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", "reporter"));
-      return body.contains(String.format("<a href=\"/mantisbt-2.19.0/account_page.php\">%s ( %s ) </a>", username, username));
+      return body.contains(String.format("<a href=\"/mantisbt-2.19.0/account_page.php\">%s</a>", username));
     }
 
     private String getTextFrom(CloseableHttpResponse response) throws IOException {
