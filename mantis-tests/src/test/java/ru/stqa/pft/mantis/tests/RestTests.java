@@ -21,12 +21,13 @@ public class RestTests extends TestBase{
 
   @Test
   public void testCreateIssue() throws IOException {
-    skipIfNotFixedBugify(730);//525  //730
+    skipIfNotFixedBugify(730);//525  //730  //942
     Set<IssueBugify> oldIssues = app.rest().getIssues();
     IssueBugify issueNew = new IssueBugify().withSubject("Test ISSUE").withDescription("Test discription issue");
     int issueId = app.rest().createIssue(issueNew);
     Set<IssueBugify> newIssues = app.rest().getIssues();
     oldIssues.add(issueNew.withId(issueId));
     assertEquals(newIssues, oldIssues);
+
   }
   }

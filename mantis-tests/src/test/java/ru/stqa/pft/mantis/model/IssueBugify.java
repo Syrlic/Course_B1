@@ -6,14 +6,14 @@ public class IssueBugify {
   private int id;
   private String subject;
   private String description;
-  private String status = "Open";
+  private String state_name;
 
   public String getStatus() {
-    return status;
+    return state_name;
   }
 
   public IssueBugify withStatus(String status) {
-    this.status = status;
+    this.state_name = status;
     return this;
   }
 
@@ -65,7 +65,7 @@ public class IssueBugify {
             "id=" + id +
             ", subject='" + subject + '\'' +
             ", description='" + description + '\'' +
-            ", status='" + status + '\'' +
+            ", status='" + state_name + '\'' +
             '}';
   }
 

@@ -8,7 +8,10 @@ import com.google.gson.reflect.TypeToken;
 import io.restassured.RestAssured;
 import ru.stqa.pft.mantis.model.IssueBugify;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class RestHelper {
@@ -24,24 +27,8 @@ public class RestHelper {
     String json = RestAssured.get(s).asString();
     JsonElement parse = new JsonParser().parse(json);
     JsonElement issues = parse.getAsJsonObject().get("issues");
-    JsonArray jsonArray = issues.getAsJsonArray();
-    IssueBugify ib = new IssueBugify();
-    Object[] res = jsonArray.get(0).getAsJsonObject().entrySet().toArray();
-    for (Object o : res) {
-      String[] value = String.valueOf(o).split("=");
-      switch (value[0]) {
-        case ("id"):
-          ib.withId(Integer.parseInt(value[1]));
-        case ("state_name"):
-          ib.withStatus(value[1]);
-        case ("subject"):
-          ib.withSubject(value[1]);
-        case ("description"):
-          ib.withDescription(value[1]);
-      }
-    }
-    System.out.println(ib);
-    return ib;
+    Set<IssueBugify> issuesBug = new Gson().fromJson(issues, new TypeToken<Set<IssueBugify>>() {}.getType());
+    return issuesBug.iterator().next();
 
   }
 
