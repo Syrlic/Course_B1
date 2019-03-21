@@ -12,17 +12,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.MatchResult;
 
 public class ApplicationManager {
 
+  private UserHelper user;
   private WebDriver wd;
   private final Properties properties;
   private String browser;
-  private RegisrationHelper registrationHelper;
+  private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private NavigationHelper navigationHelper;
+  private DbHelper dBHelper;
+  private SoapHelper soapHelper;
+  private RestHelper restHelper;
 
 
   public ApplicationManager(String browser) {
@@ -36,7 +40,7 @@ public class ApplicationManager {
   }
   public void stop() {
     if(wd != null)
-    wd.quit();
+      wd.quit();
   }
 
   public HttpSession newSession(){
@@ -47,9 +51,9 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
-  public RegisrationHelper regisration() {
+  public RegistrationHelper regisration() {
     if(registrationHelper == null) {
-      registrationHelper = new RegisrationHelper(this);
+      registrationHelper = new RegistrationHelper(this);
     }
     return registrationHelper;
   }
@@ -61,6 +65,12 @@ public class ApplicationManager {
     return ftp;
   }
 
+  public DbHelper db(){
+    if(dBHelper == null){
+      dBHelper = new DbHelper();
+    }
+    return dBHelper;
+  }
   public WebDriver getDriver() {
     if (wd == null){
       if(browser.equals(BrowserType.FIREFOX)){
@@ -74,10 +84,10 @@ public class ApplicationManager {
       }
     }
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
- //   wd.get(properties.getProperty("web.baseURL"));
+    //   wd.get(properties.getProperty("web.baseURL"));
     return wd;
   }
-  
+
   public MailHelper mail(){
     if(mailHelper == null){
       mailHelper = new MailHelper(this);
@@ -90,5 +100,33 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public NavigationHelper goTO(){
+    if(navigationHelper == null) {
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
+
+  public UserHelper user(){
+    if(user == null){
+      user = new UserHelper(this);
+    }
+    return user;
+  }
+
+  public SoapHelper soap(){
+    if(soapHelper == null){
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
+
+  public RestHelper rest() {
+    if (restHelper == null) {
+      restHelper = new RestHelper(this);
+    }
+    return restHelper;
   }
 }

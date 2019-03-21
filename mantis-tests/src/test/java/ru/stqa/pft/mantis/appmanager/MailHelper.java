@@ -10,34 +10,36 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MailHelper {
-  private ApplicationManager app;
-  private final Wiser wiser;
+  public class MailHelper {
+    private ApplicationManager app;
+    private final Wiser wiser;
 
-  public MailHelper(ApplicationManager app) {
-    this.app = app;
-    this.wiser = new Wiser(); //почтовый сервер
-  }
-
-  public List<MailMessage> waitForMail(int count, long timeout) {
-    long start = System.currentTimeMillis();
-    while (System.currentTimeMillis() < start + timeout) {
-      if (wiser.getMessages().size() >= count) {
-        return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
-      }
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+    public MailHelper(ApplicationManager app) {
+      this.app = app;
+      this.wiser = new Wiser(); //почтовый сервер
     }
 
-    throw new Error("No mail :(");
-  }
+    public List<MailMessage> waitForMail(int count, long timeout) {
+      long start = System.currentTimeMillis();
+      while (System.currentTimeMillis() < start + timeout) {
+        if (wiser.getMessages().size() >= count) {
+          System.out.println("Messages:  "+wiser.getMessages().size());
+          return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
+        }
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+
+      throw new Error("No mail :(");
+    }
 
     public static MailMessage toModelMail (WiserMessage m){
       try {
         MimeMessage mm = m.getMimeMessage();
+        System.out.println(mm.getContent().toString());
         return new MailMessage(mm.getAllRecipients()[0].toString(), (String) mm.getContent());
       } catch (MessagingException e) {
         e.printStackTrace();
@@ -54,4 +56,3 @@ public class MailHelper {
       wiser.stop();
     }
   }
-
