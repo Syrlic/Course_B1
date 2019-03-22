@@ -8,3 +8,7 @@ repositories {
 dependencies {
     compile("org.testng:testng:7.0.0-beta3")
 }
+
+test {
+    useTestNG()
+}
